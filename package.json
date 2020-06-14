@@ -1,0 +1,19 @@
+{
+  "name": "spotify-app",
+  "version": "1.0.0",
+  "description": "Compare music tastes with the Spotify API",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/williammui/spotify-app.git"
+  },
+  "author": "William Mui",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/williammui/spotify-app/issues"
+  },
+  "homepage": "https://github.com/williammui/spotify-app#readme"
+}
