@@ -3,14 +3,15 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.css';
 
 import Login from "./components/login";
+import SelectPlaylist from "./components/select-playlist";
 
 class App extends Component {
   render() {
     return (
       <Router>
-        <h1>HARMONY</h1>
+        <h1>ENSEMBLE</h1>
         <Route exact path="/" component={Login} />
-        <Route path="/dashboard" />
+        <Route exact path="/dashboard" component={SelectPlaylist}/>
         <Route path="/about" />
       </Router>
     );
