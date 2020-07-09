@@ -6,9 +6,6 @@ const session = require('express-session');
 const axios = require('axios');
 const querystring = require('querystring');
 
-const indexRouter = require('./routes/index');
-const authRouter = require('./routes/auth');
-
 app.use(session({
     secret: 'secret-key',
     resave: false,
