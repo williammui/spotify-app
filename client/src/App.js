@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.css';
 
 import Login from "./components/login";
-import SelectPlaylist from "./components/select-playlist";
+import Dashboard from "./components/dashboard";
 
 class App extends Component {
   render() {
@@ -11,7 +11,7 @@ class App extends Component {
       <Router>
         <h1>ENSEMBLE</h1>
         <Route exact path="/" component={Login} />
-        <Route exact path="/dashboard" component={SelectPlaylist}/>
+        <Route exact path="/dashboard" component={Dashboard}/>
         <Route path="/about" />
       </Router>
     );
