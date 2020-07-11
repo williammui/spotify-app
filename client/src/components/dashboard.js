@@ -26,6 +26,18 @@ class Dashboard extends Component {
             })
     }
 
+    searchPlaylists = (e) => {
+        console.log(e.target);
+        console.log(e.target.value);
+        axios.get(`http://localhost:5000/search/${e.target.value}`)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+
     // get all tracks for selected playlist
     selectPlaylist = (index) => {
         console.log(this.state.playlists);
@@ -43,6 +55,7 @@ class Dashboard extends Component {
     render() {
         return (
             <div>
+                <input type="text" onChange={(e) => this.searchPlaylists(e)}/>
                 <Playlists playlists={this.state.playlists} selectPlaylist={this.selectPlaylist} />
                 <Tracks tracks={this.state.tracks} />
             </div>

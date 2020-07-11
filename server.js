@@ -23,7 +23,7 @@ const spotifyApi = new SpotifyWebApi({
 
 // AUTHENTICATION
 app.get('/login', (req, res) => {
-    const scope = 'user-read-private user-read-email user-read-playback-state';
+    const scope = 'user-read-private user-read-email user-read-playback-state playlist-read-collaborative playlist-read-private user-library-read';
     res.redirect('https://accounts.spotify.com/authorize?' + 
     querystring.stringify({
         client_id: process.env.SPOTIFY_CLIENT_ID,
@@ -52,7 +52,7 @@ app.get('/callback', (req, res) => {
         }
     }).then((res) => {
         const { access_token, refresh_token } = res.data;
-        console.log(access_token);
+        //console.log(access_token);
         
         spotifyApi.setAccessToken(access_token);
         spotifyApi.setRefreshToken(refresh_token);
@@ -80,8 +80,93 @@ app.get('/callback', (req, res) => {
 app.get('/playlists', async (req, res) => {
     try {
         const result = await spotifyApi.getUserPlaylists();
-        console.log(result.body.items);
+        //console.log(result);
+        //console.log(result.body.items);
         res.send(result.body.items);
+    } catch (err) {
+        res.send(err);
+    }
+});
+
+app.get('/genres', async (req, res) => {
+    const playlists = {};
+
+    let start = 0;
+    let count = 0;    
+    while (true) {
+        try {
+            const tracks = await spotifyApi.getMySavedTracks({
+                limit: 50,
+                offset: start
+            });
+
+            count += tracks.body.items.length;
+
+            // get all artists in current request
+            const artists = {}; 
+            tracks.body.items.forEach((item) => {
+                const artistID = item.track.artists[0].id;
+                if (!artists.hasOwnProperty(artistID)) {
+                    artists[artistID] = [];
+                }
+            });
+
+            
+            const result = await spotifyApi.getArtists(Object.keys(artists));
+
+            // get all artist genres and update artists object
+            result.body.artists.forEach((artist) => {
+                const artistID = artist.id;
+                const genres = artist.genres;
+                if (genres != []) {
+                    artists[artistID] = genres;
+                }
+            });
+
+            // add tracks to their respective genres
+            tracks.body.items.forEach((item) => {
+                const artistID = item.track.artists[0].id;
+                const trackID = item.track.id;
+                const genres = artists[artistID];
+                genres.forEach((genre) => {
+                    if (playlists.hasOwnProperty(genre)) {
+                        playlists[genre].push(trackID);
+                    } else {
+                        playlists[genre] = [trackID];
+                    }
+                });
+            });
+
+            start += 50;
+        } catch (err) {
+            console.log(`found ${count} saved tracks`);
+            break;
+        }
+    }
+
+    res.send(playlists);
+});
+
+app.get('/artist/:id', async (req, res) => {
+    artists = {}
+    genres = {}
+
+    try {
+        const result = await spotifyApi.getArtist(req.params.input);
+        //console.log(result.body);
+        res.send(result.body);
+    } catch (err) {
+        res.send(err);
+    }
+
+    
+});
+
+app.get('/search/:input', async (req, res) => {
+    try {
+        const result = await spotifyApi.searchTracks(req.params.input);
+        //console.log(result.body);
+        res.send(result.body);
     } catch (err) {
         res.send(err);
     }
@@ -90,7 +175,7 @@ app.get('/playlists', async (req, res) => {
 app.get('/tracks/:id', async (req, res) => {
     try {
         const result = await spotifyApi.getPlaylistTracks(req.params.id);
-        console.log(result.body.items);
+        //console.log(result.body.items);
         res.send(result.body.items);
     } catch (err) {
         res.send(err);
