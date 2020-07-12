@@ -21,7 +21,7 @@ const spotifyApi = new SpotifyWebApi({
     redirectUri: process.env.REDIRECT_URI,
 });
 
-// AUTHENTICATION
+// ********************AUTHENTICATION********************
 app.get('/login', (req, res) => {
     const scope = 'user-read-private user-read-email user-read-playback-state playlist-read-collaborative playlist-read-private user-library-read';
     res.redirect('https://accounts.spotify.com/authorize?' + 
@@ -76,19 +76,9 @@ app.get('/callback', (req, res) => {
     res.redirect('http://localhost:3000/dashboard');
 });
 
-// DASHBOARD
-app.get('/playlists', async (req, res) => {
-    try {
-        const result = await spotifyApi.getUserPlaylists();
-        //console.log(result);
-        //console.log(result.body.items);
-        res.send(result.body.items);
-    } catch (err) {
-        res.send(err);
-    }
-});
 
-app.get('/genres', async (req, res) => {
+// ********************DASHBOARD********************
+app.get('/genre', async (req, res) => {
     const playlists = {};
 
     let start = 0;
@@ -144,42 +134,13 @@ app.get('/genres', async (req, res) => {
         }
     }
 
-    res.send(playlists);
-});
+    const output = {
+        track_count: count,
+        playlist_count: playlists.length,
+        playlists: playlists
+    };
 
-app.get('/artist/:id', async (req, res) => {
-    artists = {}
-    genres = {}
-
-    try {
-        const result = await spotifyApi.getArtist(req.params.input);
-        //console.log(result.body);
-        res.send(result.body);
-    } catch (err) {
-        res.send(err);
-    }
-
-    
-});
-
-app.get('/search/:input', async (req, res) => {
-    try {
-        const result = await spotifyApi.searchTracks(req.params.input);
-        //console.log(result.body);
-        res.send(result.body);
-    } catch (err) {
-        res.send(err);
-    }
-});
-
-app.get('/tracks/:id', async (req, res) => {
-    try {
-        const result = await spotifyApi.getPlaylistTracks(req.params.id);
-        //console.log(result.body.items);
-        res.send(result.body.items);
-    } catch (err) {
-        res.send(err);
-    }
+    res.send(output);
 });
 
 app.listen(process.env.PORT, () => {
