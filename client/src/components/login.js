@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import './login.css';
 
 class Login extends Component {
-  loginSpotify = () => {
-    console.log('login button clicked');
-    axios.get('http://localhost:5000/login');
-  }
-
 
   render() {
     return (
-      <a href="http://localhost:5000/login">Login With Spotify</a>
+      <div className="login-bg">
+        <div className="login-container">
+          <h1 className="login-title">CLASSIFY</h1>
+          <h2 className="login-subtitle">Organize Your Music</h2>
+          <a href="http://localhost:5000/login" className="login-link">Login With Spotify</a>
+        </div>
+      </div>
     );
   }
 }

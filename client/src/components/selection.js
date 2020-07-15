@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './selection.css';
+
 class Selection extends Component {
     
     info = () => {
@@ -18,17 +20,23 @@ class Selection extends Component {
         if (this.props.trackCount) {
             const playlistNames = Object.keys(this.props.playlists)
             return playlistNames.map((playlist) => {
-                return <h5>{playlist}</h5>
+                return <p>{playlist}</p>
             });
         }
     }
 
     render() {
         return (
-            <div>
-                <h3>Selection Page</h3>
-                { this.info() }
-                { this.playlists() }
+            <div className="selection-container">
+                <div className="selection-heading">
+                    <h1>Step 2</h1>
+                </div>
+                <div className="selection-text">
+                    { this.info() }
+                </div>
+                <div className="selection-playlists">
+                    { this.playlists() }
+                </div>
             </div>
         );
     }

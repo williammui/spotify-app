@@ -1,0 +1,35 @@
+.selection-container {
+    height: 100%;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.selection-heading {
+    font-size: 1.75em;
+    margin-bottom: 0.5em;
+}
+
+.selection-text {
+    font-size: 0.75em;
+    line-height: 1.75em;
+    margin-bottom: 2em;
+}
+
+.selection-playlists {
+    flex-grow: 1;
+    overflow: auto;
+}
+
+::-webkit-scrollbar {
+    background: #CCF6ED;
+    border-radius: 4px;
+    height: 8px;
+    width: 8px;
+  }
+  
+::-webkit-scrollbar-thumb {
+    background: #21BB9A;
+    border-radius: 4px;
+}
+

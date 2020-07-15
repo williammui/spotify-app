@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './classification.css';
 
 class Classification extends Component {
 
@@ -8,11 +9,16 @@ class Classification extends Component {
 
     render() {
         return (
-            <div>
-                <h3>Classification</h3>
-                <h2>Step 1</h2>
-                <h1>Select how you would like to organize your music</h1>
-                <button onClick={() => this.getPlaylists('genre')}>Genre</button>
+            <div className="classification-container">
+                <div className="classification-heading">
+                    <h1>Step 1</h1>
+                </div>
+                <div className="classification-text">
+                    <h2>Select how you would like to organize your music.</h2>
+                </div>
+                <div className="classification-options">
+                    <button onClick={() => this.getPlaylists('genre')}>Genre</button>
+                </div>
             </div>
         );
     }

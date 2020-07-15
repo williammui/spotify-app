@@ -1,0 +1,35 @@
+.dashboard {
+    color: white;
+    background-color: #000000;
+    background-image: linear-gradient(147deg, #000000 0%, #434343 74%);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-navbar {
+    width: 100%;
+    background: black;
+    text-align: center;
+    padding: 0.75em;
+}
+
+.dashboard-container {
+    margin-left: 10vw;
+    margin-right: 10vw;
+    display: flex;
+    flex-grow: 1;
+    min-height: 0;
+    align-items: stretch;
+}
+
+.col {
+    padding: 5%;
+    width: 30%;
+    background: rgb(51, 61, 54);
+}
+
+.col + .col {
+    margin-left: 3%;
+  }
+
