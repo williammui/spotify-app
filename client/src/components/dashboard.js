@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './dashboard.css';
 
-import Classification from "./step1/classification";
-import Selection from "./selection";
-import Playlists from "./playlists";
+import Classification from "./classification/classification";
+import Selection from "./selection/selection";
+import Playlists from "./playlists/playlists";
 
 class Dashboard extends Component {
 
