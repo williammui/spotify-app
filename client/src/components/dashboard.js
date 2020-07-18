@@ -49,6 +49,17 @@ class Dashboard extends Component {
         });
     }
 
+    savePlaylists = () => {
+        console.log(this.state.added_playlists);
+        axios.post('http://localhost:5000/save', this.state.added_playlists)
+            .then((res) => {
+                console.log(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
+
     render() {
         return (
             <div className="dashboard">
@@ -72,6 +83,7 @@ class Dashboard extends Component {
                         <Playlists 
                             step={this.state.step}
                             addedPlaylists={this.state.added_playlists}
+                            onSave={this.savePlaylists}
                         />
                     </div>
                 </div>

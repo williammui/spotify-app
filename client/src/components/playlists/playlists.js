@@ -6,6 +6,10 @@ import PlaylistsAdded from './playlists-added';
 
 class Playlists extends Component {
 
+    onSave = () => {
+        this.props.onSave();
+    }
+
     render() {
         return (
             <div className="playlists-container">
@@ -17,7 +21,7 @@ class Playlists extends Component {
                 <div className="playlists-saved">
                     <PlaylistsAdded addedPlaylists={this.props.addedPlaylists} />
                 </div>
-                <button>SAVE TO SPOTIFY</button>
+                <button onClick={() => this.onSave()}>SAVE TO SPOTIFY</button>
             </div>
         );
     }

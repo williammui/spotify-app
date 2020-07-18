@@ -5,6 +5,7 @@ const SpotifyWebApi = require('spotify-web-api-node');
 const session = require('express-session');
 const axios = require('axios');
 const querystring = require('querystring');
+const bodyParser = require('body-parser');
 
 app.use(session({
     secret: 'secret-key',
@@ -14,6 +15,8 @@ app.use(session({
 
 require('dotenv').config();
 app.use(cors());
+app.use(bodyParser.json({limit: "50mb"}));
+app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
 
 const spotifyApi = new SpotifyWebApi({
     clientId: process.env.SPOTIFY_CLIENT_ID,
@@ -23,7 +26,7 @@ const spotifyApi = new SpotifyWebApi({
 
 // ********************AUTHENTICATION********************
 app.get('/login', (req, res) => {
-    const scope = 'user-read-private user-read-email user-read-playback-state playlist-read-collaborative playlist-read-private user-library-read';
+    const scope = 'user-read-private user-read-email user-read-playback-state playlist-read-collaborative playlist-read-private user-library-read playlist-modify-private';
     res.redirect('https://accounts.spotify.com/authorize?' + 
     querystring.stringify({
         client_id: process.env.SPOTIFY_CLIENT_ID,
@@ -158,6 +161,52 @@ app.get('/genre', async (req, res) => {
     };
 
     res.send(output);
+});
+
+app.post('/save', async (req, res) => {
+    const playlists = req.body;
+    const names = Object.keys(playlists);
+
+    for (let i=0; i<names.length; i++) {
+        try {
+            const user = await spotifyApi.getMe();
+            const result = await spotifyApi.createPlaylist(user.body.id, names[i], { 'public' : false });
+
+            const playlistID = result.body.id;
+            const trackURIs = playlists[names[i]].map((track) => {
+                return track.trackURI;
+            });
+
+            let tracks = Array.from(trackURIs);
+            while (true) {
+                if (tracks.length > 100) {
+                    const addedTracks = tracks.slice(0, 100);
+                    spotifyApi.addTracksToPlaylist(playlistID, addedTracks)
+                        .then((res) => {
+                            console.log(res);
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        });
+        
+                    tracks = tracks.slice(100);
+                } else {
+                    spotifyApi.addTracksToPlaylist(playlistID, tracks)
+                        .then((res) => {
+                            console.log(res);
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        });
+                    break;
+                }
+            }
+        } catch (err) {
+            console.log(err);
+        }   
+    }
+
+    res.send(names);
 });
 
 app.listen(process.env.PORT, () => {
