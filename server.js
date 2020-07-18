@@ -116,13 +116,30 @@ app.get('/genre', async (req, res) => {
             // add tracks to their respective genres
             tracks.body.items.forEach((item) => {
                 const artistID = item.track.artists[0].id;
+                const artistName = item.track.artists.map((artist) => {
+                    return artist.name;
+                });
+
+                const imageURL = item.track.album.images[item.track.album.images.length-1].url;
+
                 const trackID = item.track.id;
+                const trackName = item.track.name;
+                const trackURI = item.track.uri;
+
+                const trackItem = {
+                    artistName: artistName,
+                    trackID: trackID,
+                    trackName: trackName,
+                    trackURI: trackURI,
+                    imageURL: imageURL
+                }
+
                 const genres = artists[artistID];
                 genres.forEach((genre) => {
                     if (playlists.hasOwnProperty(genre)) {
-                        playlists[genre].push(trackID);
+                        playlists[genre].push(trackItem);
                     } else {
-                        playlists[genre] = [trackID];
+                        playlists[genre] = [trackItem];
                     }
                 });
             });

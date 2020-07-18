@@ -15,7 +15,7 @@ class Dashboard extends Component {
             track_count: 0,
             playlist_type: '',
             playlists: {},
-            selected_playlists: {}
+            added_playlists: {}
         };
     }
 
@@ -40,10 +40,12 @@ class Dashboard extends Component {
         }
     }
 
-    createPlaylist = (playlist) => {
-        console.log(playlist + 'from dashboard!');
+    addPlaylist = (playlist) => {
+        const added = this.state.added_playlists;
+        added[playlist] = this.state.playlists[playlist];
         this.setState({
             step: 3,
+            added_playlists: added
         });
     }
 
@@ -63,11 +65,14 @@ class Dashboard extends Component {
                             trackCount={this.state.track_count} 
                             playlistType={this.state.playlist_type} 
                             playlists={this.state.playlists} 
-                            onClick={this.createPlaylist}
+                            onClick={this.addPlaylist}
                         />
                     </div>
                     <div className="col">
-                        <Playlists />
+                        <Playlists 
+                            step={this.state.step}
+                            addedPlaylists={this.state.added_playlists}
+                        />
                     </div>
                 </div>
             </div>
