@@ -1,28 +1,13 @@
 import React, { Component } from 'react';
-
 import './selection.css';
+
+import SelectionText from './selection-text';
+import SelectionPlaylists from './selection-playlists';
 
 class Selection extends Component {
     
-    info = () => {
-        if (this.props.trackCount) {
-            return (
-                <div>
-                    <h2>We found a total of</h2>
-                    <h1>{this.props.trackCount}</h1>
-                    <h2>songs in your library</h2>
-                </div>
-            );
-        }
-    }
-
-    playlists = () => {
-        if (this.props.trackCount) {
-            const playlistNames = Object.keys(this.props.playlists)
-            return playlistNames.map((playlist) => {
-                return <p>{playlist}</p>
-            });
-        }
+    createPlaylist = (playlist) => {
+        this.props.onClick(playlist);
     }
 
     render() {
@@ -32,10 +17,15 @@ class Selection extends Component {
                     <h1>Step 2</h1>
                 </div>
                 <div className="selection-text">
-                    { this.info() }
+                    <SelectionText 
+                        step={this.props.step} 
+                        trackCount={this.props.trackCount}
+                        playlistType={this.props.playlistType} 
+                        playlistCount={Object.keys(this.props.playlists).length} 
+                    />
                 </div>
                 <div className="selection-playlists">
-                    { this.playlists() }
+                    <SelectionPlaylists playlists={this.props.playlists} onClick={this.createPlaylist}/>
                 </div>
             </div>
         );

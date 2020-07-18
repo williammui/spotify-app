@@ -20,7 +20,10 @@ class Dashboard extends Component {
     }
 
     getPlaylists = (type) => {
-        this.setState({playlist_type: type});
+        this.setState({
+            step: 2,
+            playlist_type: type
+        });
         if (type === 'genre') {
             axios.get('http://localhost:5000/genre')
                 .then((res) => {
@@ -37,6 +40,13 @@ class Dashboard extends Component {
         }
     }
 
+    createPlaylist = (playlist) => {
+        console.log(playlist + 'from dashboard!');
+        this.setState({
+            step: 3,
+        });
+    }
+
     render() {
         return (
             <div className="dashboard">
@@ -48,10 +58,12 @@ class Dashboard extends Component {
                         <Classification onClick={this.getPlaylists} />
                     </div>
                     <div className="col">
-                        <Selection 
+                        <Selection
+                            step={this.state.step} 
                             trackCount={this.state.track_count} 
                             playlistType={this.state.playlist_type} 
                             playlists={this.state.playlists} 
+                            onClick={this.createPlaylist}
                         />
                     </div>
                     <div className="col">
