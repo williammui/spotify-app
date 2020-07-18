@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './dashboard.css';
 
-import Classification from "./classification";
+import Classification from "./step1/classification";
 import Selection from "./selection";
 import Playlists from "./playlists";
 
