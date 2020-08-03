@@ -11,8 +11,12 @@ class Selection extends Component {
     }
 
     render() {
+        let container = "selection-container"
+        if (this.props.step >= 2) {
+            container += " selection-active"
+        }
         return (
-            <div className="selection-container">
+            <div className={container}>
                 <div className="selection-heading">
                     <h1>Step 2</h1>
                 </div>

@@ -12,6 +12,7 @@ class Dashboard extends Component {
         super(props);
         this.state = {
             step: 1,
+            complete: false,
             track_count: 0,
             playlist_type: '',
             playlists: {},
@@ -54,6 +55,9 @@ class Dashboard extends Component {
         axios.post('http://localhost:5000/save', this.state.added_playlists)
             .then((res) => {
                 console.log(res.data);
+                this.setState({
+                    complete: true
+                });
             })
             .catch((err) => {
                 console.log(err);
@@ -88,7 +92,6 @@ class Dashboard extends Component {
                     </div>
                 </div>
             </div>
-            
         )
     }
 }

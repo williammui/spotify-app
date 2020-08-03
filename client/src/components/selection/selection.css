@@ -3,6 +3,11 @@
     font-size: 20px;
     display: flex;
     flex-direction: column;
+    opacity: 0.25;
+}
+
+.selection-active {
+  opacity: 1;
 }
 
 .selection-heading {

@@ -1,26 +1,25 @@
 .login-bg {
-    background: url('../images/keyboard.jpg');
+    background: url('../images/login-bg.jpg');
     height: 100%;
+    width: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
 }
 
-.login-container {
+.login-text {
     position: absolute;
-    top: 50%;
     width: 100%;
-    transform: translate(0%, -50%);
     text-align: center;
+    top: 15%;
 }
 
-.login-title {
-    font-size: 10vh;
-}
-
-.login-subtitle {
-    margin-bottom: 10vh;
+.login-spotify {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 77%;
 }
 
 .login-link {

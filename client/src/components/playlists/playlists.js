@@ -11,8 +11,12 @@ class Playlists extends Component {
     }
 
     render() {
+        let container = "playlists-container";
+        if (this.props.step == 3) {
+            container += " playlists-active";
+        }
         return (
-            <div className="playlists-container">
+            <div className={container}>
                 <div className="playlists-heading">
                     <h1>Step 3</h1>
                 </div>

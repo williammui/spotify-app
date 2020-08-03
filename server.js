@@ -166,6 +166,7 @@ app.get('/genre', async (req, res) => {
 app.post('/save', async (req, res) => {
     const playlists = req.body;
     const names = Object.keys(playlists);
+    let statusCode = 201;
 
     for (let i=0; i<names.length; i++) {
         try {
@@ -203,10 +204,11 @@ app.post('/save', async (req, res) => {
             }
         } catch (err) {
             console.log(err);
+            statusCode = 500;
         }   
     }
 
-    res.send(names);
+    res.send({statusCode: statusCode});
 });
 
 app.listen(process.env.PORT, () => {
