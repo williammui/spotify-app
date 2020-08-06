@@ -17,9 +17,7 @@ class Selection extends Component {
         }
         return (
             <div className={container}>
-                <div className="selection-heading">
-                    <h1>Step 2</h1>
-                </div>
+                <h2 className="title step-heading"><span>Step 2</span></h2>
                 <div className="selection-text">
                     <SelectionText 
                         step={this.props.step} 

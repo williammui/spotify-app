@@ -17,9 +17,7 @@ class Playlists extends Component {
         }
         return (
             <div className={container}>
-                <div className="playlists-heading">
-                    <h1>Step 3</h1>
-                </div>
+                <h2 className="title step-heading"><span>Step 3</span></h2>
                 <div className="playlists-text">
                 </div>
                 <div className="playlists-saved">
