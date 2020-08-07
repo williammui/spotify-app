@@ -14,7 +14,6 @@ class Step1 extends Component {
                 <div className="center">
                     <button onClick={() => this.getPlaylists('genre')}>GENRE</button>
                 </div>
-                
             </div>
         );
     }

@@ -1,19 +1,17 @@
 import React from "react";
-import './selection.css';
 
-const SelectionPlaylists = (props) => {
+const Step2Playlists = (props) => {
     const playlists = props.playlists;
     if (playlists) {
         const playlistNames = Object.keys(props.playlists)
         return playlistNames.map((playlist) => {
             return (
                 <div>
-                    <button onClick={() => props.onClick(playlist)}>{playlist}</button>
-                    <p>{playlists[playlist].length}</p>
+                    <button onClick={() => props.onClick(playlist)}>{playlist} ({playlists[playlist].length})</button>
                 </div>
             )
         });
     }
 };
 
-export default SelectionPlaylists;
+export default Step2Playlists;

@@ -3,7 +3,7 @@ import axios from 'axios';
 import './dashboard.css';
 
 import Step1 from "./step1/step1";
-import Selection from "./selection/selection";
+import Step2 from "./step2/step2";
 import Playlists from "./playlists/playlists";
 
 class Dashboard extends Component {
@@ -16,14 +16,16 @@ class Dashboard extends Component {
             track_count: 0,
             playlist_type: '',
             playlists: {},
-            added_playlists: {}
+            added_playlists: {},
+            loading: false
         };
     }
 
     getPlaylists = (type) => {
         this.setState({
             step: 2,
-            playlist_type: type
+            playlist_type: type,
+            loading: true
         });
         if (type === 'genre') {
             axios.get('http://localhost:5000/genre')
@@ -32,11 +34,15 @@ class Dashboard extends Component {
                     this.setState({
                         track_count: res.data.track_count,
                         playlist_type: type,
-                        playlists: res.data.playlists
+                        playlists: res.data.playlists,
+                        loading: false
                     });
                 })
                 .catch((err) => {
                     console.log(err);
+                    this.setState({
+                        error: true
+                    });
                 });
         }
     }
@@ -75,11 +81,12 @@ class Dashboard extends Component {
                         <Step1 onClick={this.getPlaylists} />
                     </div>
                     <div className="col">
-                        <Selection
+                        <Step2
                             step={this.state.step} 
                             trackCount={this.state.track_count} 
                             playlistType={this.state.playlist_type} 
-                            playlists={this.state.playlists} 
+                            playlists={this.state.playlists}
+                            loading={this.state.loading}
                             onClick={this.addPlaylist}
                         />
                     </div>
