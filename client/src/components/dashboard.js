@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './dashboard.css';
 
+import Navbar from './navbar';
 import Step1 from "./step1/step1";
 import Step2 from "./step2/step2";
 import Step3 from "./step3/step3";
@@ -18,8 +19,24 @@ class Dashboard extends Component {
             playlist_type: '',
             playlists: {},
             added_playlists: {},
-            loading: false
+            loading: false,
+            user: ''
         };
+    }
+
+    componentDidMount() {
+        this.reset();
+        axios.get('http://localhost:5000/user')
+                .then((res) => {
+                    this.setState({
+                        user: res.data
+                    });
+                })
+                .catch((err) => {});
+    }
+
+    loginWithSpotify = () => {
+        window.location.href='http://localhost:5000/login';
     }
 
     getPlaylists = (type) => {
@@ -95,15 +112,28 @@ class Dashboard extends Component {
             });
     }
 
+    reset = () => {
+        this.setState({
+            step: 1,
+            saved: false,
+            complete: false,
+            track_count: 0,
+            playlist_type: '',
+            playlists: {},
+            added_playlists: {},
+            loading: false
+        });
+    }
+
     render() {
         return (
             <div className="dashboard">
                 <div className="dashboard-navbar">
-                    <h1 className="subtitle-med">CLASSIFY</h1>
+                    <Navbar user={this.state.user} login={this.loginWithSpotify} reset={this.reset} />
                 </div>
                 <div className="dashboard-container">
                     <div className="col">
-                        <Step1 onClick={this.getPlaylists} />
+                        <Step1 onClick={this.getPlaylists} user={this.state.user} />
                     </div>
                     <div className="col">
                         <Step2

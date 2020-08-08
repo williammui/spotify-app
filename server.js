@@ -81,6 +81,15 @@ app.get('/callback', (req, res) => {
 
 
 // ********************DASHBOARD********************
+app.get('/user', async (req, res) => {
+    try {
+        const user = await spotifyApi.getMe();
+        res.send(user.body.display_name);
+    } catch (err) {
+        res.send('');
+    }
+});
+
 app.get('/genre', async (req, res) => {
     const playlists = {};
 

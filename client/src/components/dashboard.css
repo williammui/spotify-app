@@ -11,8 +11,29 @@
 .dashboard-navbar {
     width: 100%;
     background: black;
-    text-align: center;
-    padding: 2.5em;
+}
+
+.navbar-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 2em 4em;
+}
+
+.navbar-container:last-child {
+    margin-left: auto;
+}
+
+.navbar-container button {
+    color: white;
+    opacity: 0.5;
+}
+
+.navbar-container button:hover {
+    font-size: 2rem;
+    cursor: pointer;
+    opacity: 1;
 }
 
 .dashboard-container {
