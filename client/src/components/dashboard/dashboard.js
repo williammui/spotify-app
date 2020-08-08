@@ -3,9 +3,9 @@ import axios from 'axios';
 import './dashboard.css';
 
 import Navbar from './navbar';
-import Step1 from "./step1/step1";
-import Step2 from "./step2/step2";
-import Step3 from "./step3/step3";
+import Step1 from "../step1/step1";
+import Step2 from "../step2/step2";
+import Step3 from "../step3/step3";
 
 class Dashboard extends Component {
 
