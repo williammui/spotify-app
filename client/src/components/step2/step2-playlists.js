@@ -3,7 +3,7 @@ import React from "react";
 const Step2Playlists = (props) => {
     const playlists = props.playlists;
     if (playlists) {
-        const playlistNames = Object.keys(props.playlists)
+        const playlistNames = Object.keys(playlists)
         return playlistNames.map((playlist) => {
             return (
                 <div>

@@ -4,7 +4,7 @@ import './dashboard.css';
 
 import Step1 from "./step1/step1";
 import Step2 from "./step2/step2";
-import Playlists from "./playlists/playlists";
+import Step3 from "./step3/step3";
 
 class Dashboard extends Component {
 
@@ -12,6 +12,7 @@ class Dashboard extends Component {
         super(props);
         this.state = {
             step: 1,
+            saved: false,
             complete: false,
             track_count: 0,
             playlist_type: '',
@@ -56,17 +57,41 @@ class Dashboard extends Component {
         });
     }
 
+    removePlaylist = (playlist) => {
+        const added = this.state.added_playlists;
+        delete added[playlist];
+        this.setState({
+            added_playlists: added
+        });
+        if (!Object.keys(added).length) {
+            console.log('here');
+            this.setState({
+                step: 2
+            });
+        }
+    } 
+
     savePlaylists = () => {
-        console.log(this.state.added_playlists);
+        this.setState({
+            loading: true,
+            complete: false,
+            saved: false
+        });
         axios.post('http://localhost:5000/save', this.state.added_playlists)
             .then((res) => {
                 console.log(res.data);
                 this.setState({
+                    saved: true,
+                    loading: false,
                     complete: true
                 });
             })
             .catch((err) => {
-                console.log(err);
+                this.setState({
+                    saved: false,
+                    loading: false,
+                    complete: true
+                });
             });
     }
 
@@ -91,10 +116,14 @@ class Dashboard extends Component {
                         />
                     </div>
                     <div className="col">
-                        <Playlists 
+                        <Step3 
                             step={this.state.step}
                             addedPlaylists={this.state.added_playlists}
+                            onRemove={this.removePlaylist}
                             onSave={this.savePlaylists}
+                            saved={this.state.saved}
+                            loading={this.state.loading}
+                            complete={this.state.complete}
                         />
                     </div>
                 </div>

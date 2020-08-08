@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './playlists.css';
+import './step3.css';
 
-import PlaylistsTracks from './playlists-tracks';
+import Step3Tracks from './step3-tracks';
 
-class PlaylistsItem extends Component {
+class Step3Item extends Component {
 
     constructor(props) {
         super(props);
@@ -21,10 +21,12 @@ class PlaylistsItem extends Component {
     render() {
         return (
             <div>
-                <button onClick={() => this.toggle()}>{this.props.name}</button>
-                <PlaylistsTracks 
+                <div className="flex-container">
+                    <button onClick={() => this.toggle()}>{this.props.name} ({this.props.length})</button>
+                    <button onClick={() => this.props.onRemove(this.props.name)} className="remove-btn">x</button>
+                </div>
+                <Step3Tracks 
                     open={this.state.open}
-                    name={this.props.name} 
                     tracks={this.props.tracks}
                 />
             </div>
@@ -33,4 +35,4 @@ class PlaylistsItem extends Component {
     }
 }
 
-export default PlaylistsItem;
+export default Step3Item;
