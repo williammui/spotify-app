@@ -16,7 +16,7 @@ const Navbar = (props) => {
         return (
             <div className="navbar-container">
                 <h1 className="subtitle-med">CLASSIFY</h1>
-                <button onClick={props.login}>LOGIN</button>
+                <button onClick={props.login}>LOGIN WITH SPOTIFY</button>
             </div>
         )
     }
