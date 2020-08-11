@@ -1,0 +1,32 @@
+.login-bg {
+    background: url('../../images/login-bg.jpg');
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login-container {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    top: 30%;
+}
+
+.login-link {
+    position: absolute;
+    margin-top: 5em;
+    background: #1DB954;
+    color: white;
+    text-decoration: none;
+    padding: 1em 1.5em;
+    border-radius: 1.5em;
+    transform: translateX(-50%);
+    transition: 0.3s;
+}
+
+.login-link:hover {
+    background: black;
+}
+
