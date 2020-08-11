@@ -26,7 +26,7 @@ class Dashboard extends Component {
 
     componentDidMount() {
         this.reset();
-        axios.get('http://localhost:5000/user')
+        axios.get('http://localhost:5000/api/user/userInfo', { withCredentials: true })
                 .then((res) => {
                     this.setState({
                         user: res.data
@@ -36,7 +36,7 @@ class Dashboard extends Component {
     }
 
     loginWithSpotify = () => {
-        window.location.href='http://localhost:5000/login';
+        window.location.href='http://localhost:5000/api/auth/login';
     }
 
     getPlaylists = (type) => {
@@ -46,7 +46,7 @@ class Dashboard extends Component {
             loading: true
         });
         if (type === 'genre') {
-            axios.get('http://localhost:5000/genre')
+            axios.get('http://localhost:5000/api/user/genre', { withCredentials: true })
                 .then((res) => {
                     console.log(res.data);
                     this.setState({
@@ -94,7 +94,7 @@ class Dashboard extends Component {
             complete: false,
             saved: false
         });
-        axios.post('http://localhost:5000/save', this.state.added_playlists)
+        axios.post('http://localhost:5000/api/user/save', this.state.added_playlists, { withCredentials: true })
             .then((res) => {
                 console.log(res.data);
                 this.setState({

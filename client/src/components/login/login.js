@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import axios from 'axios';
 import './login.css';
 
 class Login extends Component {
 
   loginWithSpotify = () => {
-      window.location.href='http://localhost:5000/login';
+    axios.get('http://localhost:5000/api/auth/login', { withCredentials: true })
+                .then((res) => {
+                  window.location.href = res.data;
+                })
+                .catch((err) => {});
   }
 
   render() {
