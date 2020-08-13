@@ -17,7 +17,7 @@ class Step3 extends Component {
 
     render() {
         let container = "step-container inactive"
-        if (this.props.step == 3) {
+        if (this.props.step === 3) {
             container = "step-container"
         }
         return (

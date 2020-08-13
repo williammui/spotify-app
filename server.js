@@ -19,9 +19,10 @@ app.use(cors({
 
 // allow large playlists to be saved
 app.use(bodyParser.json({limit: "50mb"}));
+app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
 
 // save session to MongoDB to access resources
-mongoose.connect(MONGO_URI, { useNewUrlParser: true });
+mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 app.use(session({
     name: 'SID',
     resave: false,
@@ -30,12 +31,20 @@ app.use(session({
     store: new MongoStore({
         mongooseConnection: mongoose.connection,
         ttl: 60 * 60
-    })
+    }),
+    cookie: {
+        secure: false,
+        expires: new Date(Date.now() + 60 * 60 * 1000)
+    }
 }));
 
 // routes
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'));
+}
 
 app.listen(PORT, () => {
     console.log('server is running on port: ' + PORT);

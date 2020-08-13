@@ -1,9 +1,9 @@
 import React from "react";
 
 const Step2Text = (props) => {
-  if (props.step == 1) {
+  if (props.step === 1) {
       return <div></div>
-  } else if (props.step == 2 && props.loading) {
+  } else if (props.step === 2 && props.loading) {
       return (
           <div className="center">
               <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>

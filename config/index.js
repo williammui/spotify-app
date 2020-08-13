@@ -7,5 +7,8 @@ module.exports = {
     SPOTIFY_CLIENT_ID: process.env.SPOTIFY_CLIENT_ID,
     SPOTIFY_CLIENT_SECRET: process.env.SPOTIFY_CLIENT_SECRET,
     REDIRECT_URI: process.env.REDIRECT_URI,
-    STATE: process.env.STATE
+    STATE: process.env.STATE,
+    ENCRYPTION_KEY: process.env.ENCRYPTION_KEY,
+    ENCRYPTION_ALGORITHM: process.env.ENCRYPTION_ALGORITHM,
+    ENCRYPTION_ENCODING: process.env.ENCRYPTION_ENCODING
 };

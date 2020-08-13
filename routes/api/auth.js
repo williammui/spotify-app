@@ -3,8 +3,7 @@ var router = express.Router();
 const SpotifyWebApi = require('spotify-web-api-node');
 
 const { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, REDIRECT_URI, STATE } = require('../../config/index');
-
-require('dotenv').config();
+const { encrypt } = require('../../util/encrypt');
 
 const spotifyApi = new SpotifyWebApi({
     clientId: SPOTIFY_CLIENT_ID,
@@ -15,7 +14,6 @@ const spotifyApi = new SpotifyWebApi({
 router.get('/login', (req, res) => {
     const scopes = ['user-read-private user-read-email user-read-playback-state playlist-read-collaborative playlist-read-private user-library-read playlist-modify-private'];
     var authorizeURL = spotifyApi.createAuthorizeURL(scopes, STATE);
-    console.log(authorizeURL);
     res.send(authorizeURL+"&show_dialog=true");
 });
 
@@ -24,10 +22,9 @@ router.get('/callback', async (req, res) => {
 
     try {
         const data = await spotifyApi.authorizationCodeGrant(code)
-        const { access_token, refresh_token } = data.body    
-        req.session.spotifyAccount = { access_token, refresh_token }
-    
-        console.log('done');
+        const { access_token } = data.body;
+        req.session.spotifyAccount = encrypt(access_token);
+
         res.redirect('http://localhost:3000/dashboard');
       } catch(err) {
         res.redirect('http://localhost:3000/dashboard');

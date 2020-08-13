@@ -5,7 +5,7 @@ import './login.css';
 class Login extends Component {
 
   loginWithSpotify = () => {
-    axios.get('http://localhost:5000/api/auth/login', { withCredentials: true })
+    axios.get('/api/auth/login', { withCredentials: true })
                 .then((res) => {
                   window.location.href = res.data;
                 })

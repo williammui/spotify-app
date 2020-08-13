@@ -2,10 +2,11 @@ var express = require('express');
 var router = express.Router();
 const SpotifyWebApi = require('spotify-web-api-node');
 
+const { decrypt } = require('../../util/encrypt');
+
 router.get('/userInfo', async (req, res) => {
     const loggedInSpotifyApi = new SpotifyWebApi();
-    loggedInSpotifyApi.setAccessToken(req.session.spotifyAccount["access_token"]);
-    loggedInSpotifyApi.setRefreshToken(req.session.spotifyAccount["refresh_token"]);
+    loggedInSpotifyApi.setAccessToken(decrypt(req.session.spotifyAccount));
 
     try {
         const user = await loggedInSpotifyApi.getMe();
@@ -18,8 +19,7 @@ router.get('/userInfo', async (req, res) => {
 
 router.get('/genre', async (req, res) => {
     const loggedInSpotifyApi = new SpotifyWebApi();
-    loggedInSpotifyApi.setAccessToken(req.session.spotifyAccount["access_token"]);
-    loggedInSpotifyApi.setRefreshToken(req.session.spotifyAccount["refresh_token"]);
+    loggedInSpotifyApi.setAccessToken(decrypt(req.session.spotifyAccount));
 
     const playlists = {};
 
@@ -104,11 +104,7 @@ router.get('/genre', async (req, res) => {
 
 router.post('/save', async (req, res) => {
     const loggedInSpotifyApi = new SpotifyWebApi();
-    loggedInSpotifyApi.setAccessToken(req.session.spotifyAccount["access_token"]);
-    loggedInSpotifyApi.setRefreshToken(req.session.spotifyAccount["refresh_token"]);
-
-    console.log('saving');
-    console.log(req.header);
+    loggedInSpotifyApi.setAccessToken(decrypt(req.session.spotifyAccount));
 
     const playlists = req.body;
     const names = Object.keys(playlists);
