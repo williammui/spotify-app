@@ -6,7 +6,7 @@ const Step2Playlists = (props) => {
         const playlistNames = Object.keys(playlists)
         return playlistNames.map((playlist) => {
             return (
-                <div>
+                <div key={playlist}>
                     <button onClick={() => props.onClick(playlist)}>{playlist} ({playlists[playlist].length})</button>
                 </div>
             )

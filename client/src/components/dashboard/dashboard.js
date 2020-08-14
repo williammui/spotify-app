@@ -52,7 +52,6 @@ class Dashboard extends Component {
         if (type === 'genre') {
             axios.get('/api/user/genre', { withCredentials: true })
                 .then((res) => {
-                    console.log(res.data);
                     this.setState({
                         track_count: res.data.track_count,
                         playlist_type: type,
@@ -61,7 +60,6 @@ class Dashboard extends Component {
                     });
                 })
                 .catch((err) => {
-                    console.log(err);
                     this.setState({
                         error: true
                     });
@@ -85,7 +83,6 @@ class Dashboard extends Component {
             added_playlists: added
         });
         if (!Object.keys(added).length) {
-            console.log('here');
             this.setState({
                 step: 2
             });
@@ -100,7 +97,6 @@ class Dashboard extends Component {
         });
         axios.post('/api/user/save', this.state.added_playlists, { withCredentials: true })
             .then((res) => {
-                console.log(res.data);
                 this.setState({
                     saved: true,
                     loading: false,

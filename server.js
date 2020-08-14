@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:500
 
 // save session to MongoDB to access resources
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
-app.use(session({
+let sessionConfig = {
     name: 'SID',
     resave: false,
     saveUninitialized: false,
@@ -36,7 +36,8 @@ app.use(session({
         secure: false,
         expires: new Date(Date.now() + 60 * 60 * 1000)
     }
-}));
+}
+app.use(session(sessionConfig));
 
 // routes
 app.use('/api/auth', authRoutes);
@@ -44,6 +45,7 @@ app.use('/api/user', userRoutes);
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
+    sessionConfig.cookie.secure = true;
 }
 
 app.listen(PORT, () => {

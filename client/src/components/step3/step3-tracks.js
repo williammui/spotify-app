@@ -6,7 +6,7 @@ const Step3Tracks = (props) => {
     if (props.open) {
         return tracks.map((track) => {
             return (
-                <div className="track-grid">
+                <div className="track-grid" key={track.trackID}>
                     <div className="track-img" style={{
                         backgroundImage: `url(${track.imageURL})`,
                         backgroundRepeat: "no-repeat",

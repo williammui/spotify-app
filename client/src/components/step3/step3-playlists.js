@@ -7,7 +7,7 @@ const Step3Playlists = (props) => {
         const playlistNames = Object.keys(addedPlaylists)
         return playlistNames.map((playlist) => {
             return (
-                <div>
+                <div key={playlist}>
                     <Step3Item name={playlist} length={addedPlaylists[playlist].length} tracks={addedPlaylists[playlist]} onRemove={props.onRemove}/>
                 </div>
             )

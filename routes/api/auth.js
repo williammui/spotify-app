@@ -12,7 +12,7 @@ const spotifyApi = new SpotifyWebApi({
 });
 
 router.get('/login', (req, res) => {
-    const scopes = ['user-read-private user-read-email user-read-playback-state playlist-read-collaborative playlist-read-private user-library-read playlist-modify-private'];
+    const scopes = ['user-read-private', 'user-read-email', 'user-library-read', 'playlist-modify-private'];
     var authorizeURL = spotifyApi.createAuthorizeURL(scopes, STATE);
     res.send(authorizeURL+"&show_dialog=true");
 });
