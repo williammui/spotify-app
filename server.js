@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:500
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 app.use(session({
     name: 'SID',
-    resave: false,
+    resave: true,
     saveUninitialized: false,
     secret: SESSION_SECRET,
     store: new MongoStore({
