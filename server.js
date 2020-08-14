@@ -34,7 +34,8 @@ app.use(session({
         ttl: 60 * 60
     }),
     cookie: {
-        secure: SESSION_SECURE,
+        httpOnly: true,
+        secure: true,
         expires: new Date(Date.now() + 60 * 60 * 1000)
     }
 }));
