@@ -7,7 +7,7 @@ const MongoStore = require('connect-mongo')(session);
 const mongoose = require('mongoose');
 const path = require('path');
 
-const { PORT, MONGO_URI, SESSION_SECRET } = require('./config/index');
+const { PORT, MONGO_URI, SESSION_SECRET, SESSION_SECURE } = require('./config/index');
 
 const authRoutes = require('./routes/api/auth');
 const userRoutes = require('./routes/api/user');
@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:500
 
 // save session to MongoDB to access resources
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
-let sessionConfig = {
+app.use(session({
     name: 'SID',
     resave: false,
     saveUninitialized: false,
@@ -34,11 +34,10 @@ let sessionConfig = {
         ttl: 60 * 60
     }),
     cookie: {
-        secure: false,
+        secure: SESSION_SECURE,
         expires: new Date(Date.now() + 60 * 60 * 1000)
     }
-}
-app.use(session(sessionConfig));
+}));
 
 // routes
 app.use('/api/auth', authRoutes);
@@ -46,7 +45,6 @@ app.use('/api/user', userRoutes);
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
-    sessionConfig.cookie.secure = true;
 
     app.get('*', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
