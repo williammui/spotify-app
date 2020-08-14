@@ -20,7 +20,8 @@ class Dashboard extends Component {
             playlists: {},
             added_playlists: {},
             loading: false,
-            user: ''
+            user: '',
+            error: false
         };
     }
 
@@ -47,7 +48,9 @@ class Dashboard extends Component {
         this.setState({
             step: 2,
             playlist_type: type,
-            loading: true
+            loading: true,
+            track_count: 0,
+            playlists: {}
         });
         if (type === 'genre') {
             axios.get('/api/user/genre', { withCredentials: true })
@@ -143,6 +146,7 @@ class Dashboard extends Component {
                             playlists={this.state.playlists}
                             loading={this.state.loading}
                             onClick={this.addPlaylist}
+                            error={this.state.error}
                         />
                     </div>
                     <div className="col">

@@ -23,11 +23,12 @@ class Step2 extends Component {
                         trackCount={this.props.trackCount}
                         playlistType={this.props.playlistType}
                         loading={this.props.loading}
-                        playlistCount={Object.keys(this.props.playlists).length} 
+                        playlistCount={Object.keys(this.props.playlists).length}
+                        error={this.props.error} 
                     />
                 </div>
                 <div className="overflow-container">
-                    <Step2Playlists playlists={this.props.playlists} onClick={this.createPlaylist}/>
+                    <Step2Playlists playlists={this.props.playlists} loading={this.props.loading} onClick={this.createPlaylist} />
                 </div>
             </div>
         );
