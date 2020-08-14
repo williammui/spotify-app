@@ -24,6 +24,7 @@ app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:500
 
 // save session to MongoDB to access resources
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+app.set('trust proxy', 1);
 app.use(session({
     name: 'SID',
     resave: true,
