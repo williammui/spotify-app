@@ -93,14 +93,14 @@ button:hover {
     min-height: 100px;
 }
 
-::-webkit-scrollbar {
+.overflow-container::-webkit-scrollbar {
     background: black;
     border-radius: 4px;
     height: 8px;
     width: 8px;
   }
   
-::-webkit-scrollbar-thumb {
+.overflow-container::-webkit-scrollbar-thumb {
     background: #3500D3;
     border-radius: 4px;
 }
