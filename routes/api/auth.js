@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const SpotifyWebApi = require('spotify-web-api-node');
 
-const { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, REDIRECT_URI, DASHBOARD_REDIRECT_URI, STATE } = require('../../config/index');
+const { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, REDIRECT_URI, CLIENT_URI, STATE } = require('../../config/index');
 const { encrypt } = require('../../util/encrypt');
 
 const spotifyApi = new SpotifyWebApi({
@@ -23,12 +23,11 @@ router.get('/callback', async (req, res) => {
     try {
         const data = await spotifyApi.authorizationCodeGrant(code)
         const { access_token } = data.body;
-        //req.session.spotifyAccount = { access_token };
         req.session.spotifyAccount = encrypt(access_token);
 
-        res.redirect(DASHBOARD_REDIRECT_URI);
+        res.redirect(CLIENT_URI+'/dashboard');
       } catch(err) {
-        res.redirect(DASHBOARD_REDIRECT_URI);
+        res.redirect(CLIENT_URI+'/dashboard');
       }
 });
 

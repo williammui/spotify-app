@@ -5,15 +5,12 @@ const SpotifyWebApi = require('spotify-web-api-node');
 const { decrypt } = require('../../util/encrypt');
 
 router.get('/userInfo', async (req, res) => {
-    const loggedInSpotifyApi = new SpotifyWebApi();
-    loggedInSpotifyApi.setAccessToken(decrypt(req.session.spotifyAccount));
-    //loggedInSpotifyApi.setAccessToken(req.session.spotifyAccount.access_token);
-
     try {
+        const loggedInSpotifyApi = new SpotifyWebApi();
+        loggedInSpotifyApi.setAccessToken(decrypt(req.session.spotifyAccount));
         const user = await loggedInSpotifyApi.getMe();
         res.send(user.body.display_name);
     } catch (err) {
-        console.log(err);
         res.send('');
     }
 });

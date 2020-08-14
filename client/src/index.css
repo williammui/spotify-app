@@ -17,6 +17,8 @@ body, html, #root {
 a {
     font-size: 2rem;
     font-weight: 700;
+    text-decoration: none;
+    color: inherit;
 }
 
 button {
@@ -25,7 +27,7 @@ button {
     border: none;
     border-radius: 1em;
     padding: 0.75em 1.25em;
-    font-size: 2rem;
+    font-size: 1.75rem;
     font-weight: 700;
     outline: none;
     transition: 0.3s;
@@ -37,7 +39,7 @@ button:hover {
 }
 
 .title {
-    font-size: 10rem;
+    font-size: 7.5rem;
     font-weight: 700;
 }
 
@@ -47,12 +49,12 @@ button:hover {
 }
 
 .subtitle-med {
-    font-size: 3.75rem;
+    font-size: 3.5rem;
     font-weight: 700;
 }
 
 .text {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
     font-weight: 400;
 }
 
@@ -88,6 +90,7 @@ button:hover {
 .overflow-container {
     overflow: auto;
     flex-grow: 1;
+    min-height: 100px;
 }
 
 ::-webkit-scrollbar {

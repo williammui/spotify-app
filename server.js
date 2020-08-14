@@ -7,14 +7,14 @@ const MongoStore = require('connect-mongo')(session);
 const mongoose = require('mongoose');
 const path = require('path');
 
-const { PORT, DEV_URI, MONGO_URI, SESSION_SECRET, SESSION_SECURE } = require('./config/index');
+const { PORT, CLIENT_URI, MONGO_URI, SESSION_SECRET, SESSION_SECURE } = require('./config/index');
 
 const authRoutes = require('./routes/api/auth');
 const userRoutes = require('./routes/api/user');
 
 // allow requests from client with session cookies
 app.use(cors({
-    origin: DEV_URI,
+    origin: CLIENT_URI,
     credentials: true
 }));
 
@@ -25,8 +25,7 @@ app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:500
 // save session to MongoDB to access resources
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 app.set('trust proxy', 1);
-app.use(session({
-    name: 'SID',
+const sessionConfig = {
     resave: true,
     saveUninitialized: false,
     secret: SESSION_SECRET,
@@ -36,10 +35,11 @@ app.use(session({
     }),
     cookie: {
         httpOnly: true,
-        secure: true,
+        secure: false,
         expires: new Date(Date.now() + 60 * 60 * 1000)
     }
-}));
+}
+app.use(session(sessionConfig));
 
 // routes
 app.use('/api/auth', authRoutes);
@@ -47,6 +47,7 @@ app.use('/api/user', userRoutes);
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
+    sessionConfig.cookie.secure = true;
 
     app.get('*', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
