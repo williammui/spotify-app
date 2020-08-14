@@ -1,2 +1,2 @@
-# spotify-app
-Compare music tastes using the Spotify API.
+# Classify
+Organize your music using the Spotify Web API.
