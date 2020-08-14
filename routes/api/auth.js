@@ -23,8 +23,8 @@ router.get('/callback', async (req, res) => {
     try {
         const data = await spotifyApi.authorizationCodeGrant(code)
         const { access_token } = data.body;
-        req.session.spotifyAccount = { access_token };
-        //req.session.spotifyAccount = encrypt(access_token);
+        //req.session.spotifyAccount = { access_token };
+        req.session.spotifyAccount = encrypt(access_token);
 
         res.redirect(DASHBOARD_REDIRECT_URI);
       } catch(err) {
