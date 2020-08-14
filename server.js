@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const mongoose = require('mongoose');
+const path = require('path');
 
 const { PORT, MONGO_URI, SESSION_SECRET } = require('./config/index');
 
@@ -46,6 +47,10 @@ app.use('/api/user', userRoutes);
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
     sessionConfig.cookie.secure = true;
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
 }
 
 app.listen(PORT, () => {

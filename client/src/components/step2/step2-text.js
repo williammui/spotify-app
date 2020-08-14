@@ -6,6 +6,7 @@ const Step2Text = (props) => {
   } else if (props.step === 2 && props.loading) {
       return (
           <div className="center">
+              <h3 className="text">Organizing your library...</h3>
               <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
           </div>
       )
