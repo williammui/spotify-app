@@ -2,6 +2,7 @@ require('dotenv').config();
 
 module.exports = {
     PORT: process.env.PORT,
+    DEV_URI: process.env.DEV_URI,
     MONGO_URI: process.env.MONGO_URI,
     SESSION_SECRET: process.env.SESSION_SECRET,
     SESSION_SECURE: process.env.SESSION_SECURE,

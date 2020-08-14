@@ -7,14 +7,14 @@ const MongoStore = require('connect-mongo')(session);
 const mongoose = require('mongoose');
 const path = require('path');
 
-const { PORT, MONGO_URI, SESSION_SECRET, SESSION_SECURE } = require('./config/index');
+const { PORT, DEV_URI, MONGO_URI, SESSION_SECRET, SESSION_SECURE } = require('./config/index');
 
 const authRoutes = require('./routes/api/auth');
 const userRoutes = require('./routes/api/user');
 
 // allow requests from client with session cookies
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: DEV_URI,
     credentials: true
 }));
 
