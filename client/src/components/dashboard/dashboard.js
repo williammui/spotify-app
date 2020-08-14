@@ -50,17 +50,22 @@ class Dashboard extends Component {
             playlist_type: type,
             loading: true,
             track_count: 0,
-            playlists: {}
+            playlists: {},
+            added_playlists: {},
+            saved: false,
+            complete: false,
         });
         if (type === 'genre') {
             axios.get('/api/user/genre', { withCredentials: true })
                 .then((res) => {
-                    this.setState({
-                        track_count: res.data.track_count,
-                        playlist_type: type,
-                        playlists: res.data.playlists,
-                        loading: false
-                    });
+                    if (this.state.step === 2) {
+                        this.setState({
+                            track_count: res.data.track_count,
+                            playlist_type: type,
+                            playlists: res.data.playlists,
+                            loading: false
+                        });
+                    }
                 })
                 .catch((err) => {
                     this.setState({
