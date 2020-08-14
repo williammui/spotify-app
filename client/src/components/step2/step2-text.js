@@ -18,7 +18,7 @@ const Step2Text = (props) => {
               <h3 className="text">We found a total of</h3>
               <h3><span className="subtitle-med">{props.trackCount}</span><span className="text">   tracks in   </span><span className="subtitle-med">{props.playlistCount}</span></h3>
               <h3 className="text">{props.playlistType}s in your library.</h3>
-              <h3 className="text" style={{marginTop: "0.1em"}}>Click to add and preview.</h3>
+              <h3 className="text" style={{marginTop: "0.2em"}}>Click to add and preview.</h3>
           </div>
       )
    }
