@@ -1,34 +1,38 @@
 .login-bg {
     background: url('../../images/login-bg.jpg');
     height: 100%;
-    min-height: 700px;
     width: 100%;
-    min-width: 200px;
+    min-height: 325px;
+    min-width: 325px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    position: relative;
 }
 
-.login-container {
-    position: relative;
+.login-text {
+    position: absolute;
+    top: 10em;
     width: 100%;
     text-align: center;
-    top: 30%;
+    color: white;
 }
 
 .login-link {
     position: absolute;
-    margin-top: 5em;
+    bottom: 5em;
     background: #1DB954;
     color: white;
     text-decoration: none;
     padding: 1em 1.5em;
     border-radius: 1.5em;
+    left: 50%;
     transform: translateX(-50%);
     transition: 0.3s;
 }
 
 .login-link:hover {
-    background: black;
+    background: white;
+    color: #1DB954;
 }
 

@@ -15,11 +15,11 @@ class Login extends Component {
   render() {
     return (
       <div className="login-bg">
-        <div className="login-container">
-          <h1 className="title" style={{fontSize: "10rem"}}>CLASSIFY</h1>
-          <h3 className="subtitle-med" style={{fontWeight: "normal"}}>Create genre specific playlists<br></br>from your Spotify library.</h3>
-          <button className="login-link" onClick={() => this.loginWithSpotify()}>Login With Spotify</button>
+        <div className="login-text">
+          <h1 className="title">CLASSIFY</h1>
+          <h3 className="subtitle-small">Create genre specific playlists<br></br>from your Spotify library.</h3>
         </div>
+        <button className="login-link" onClick={() => this.loginWithSpotify()}>Login With Spotify</button>
       </div>
     );
   }
