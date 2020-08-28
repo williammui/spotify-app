@@ -80,7 +80,9 @@ class Dashboard extends Component {
         added[playlist] = this.state.playlists[playlist];
         this.setState({
             step: 3,
-            added_playlists: added
+            added_playlists: added,
+            complete: false,
+            saved: false
         });
     }
 
