@@ -17,6 +17,7 @@
     padding-top: 2em;
     padding-bottom: 2em;
     padding-left: 1.25%;
+    align-items: center;
 }
 
 .navbar-container:last-child {

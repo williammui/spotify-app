@@ -5,7 +5,7 @@ const Navbar = (props) => {
     if (props.user) {
         return (
             <div className="navbar-container">
-                <a href="/dashboard"><h1 className="subtitle-med">CLASSIFY</h1></a>
+                <a href="/dashboard"><h1 className="subtitle-small" style={{fontWeight: "bold"}}>CLASSIFY</h1></a>
                 <div style={{display: "flex", alignItems: "center"}}>
                     <h2 className="text">{props.user}</h2>
                     <button onClick={props.reset}>RESET</button>
@@ -15,7 +15,7 @@ const Navbar = (props) => {
     } else {
         return (
             <div className="navbar-container">
-                <h1 className="subtitle-med">CLASSIFY</h1>
+                <h1 className="subtitle-small" style={{fontWeight: "bold"}}>CLASSIFY</h1>
                 <button onClick={props.login}>LOGIN WITH SPOTIFY</button>
             </div>
         )
