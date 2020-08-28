@@ -12,6 +12,17 @@ body, html, #root {
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
     font-size: 62.5%;
+    background: linear-gradient(black, #0C0032);
+}
+
+@media screen and (max-width: 900px) {
+  body, html, #root {
+    height: 100%;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 50%;
+  }
 }
 
 a {
@@ -33,19 +44,9 @@ button {
     transition: 0.3s;
 }
 
-button:hover {
+button:hover, button:active {
   font-size: 2.1rem;
   cursor: pointer;
-}
-
-@media screen and (max-width: 992px) {
-  body, html, #root {
-    height: 100%;
-    width: 100%;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-    font-size: 50%;
-}
 }
 
 .title {

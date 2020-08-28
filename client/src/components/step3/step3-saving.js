@@ -5,11 +5,11 @@ const Step3Saving = (props) => {
     if (!props.complete && !props.loading) {
         return <div></div>
     } else if (!props.complete && props.loading) {
-        return <div className="text">Saving...</div>
+        return <p className="text">Saving...</p>
     } else if (props.complete && !props.saved) {
-        return <div className="text">Failed.</div>
+        return <p className="text">Failed.</p>
     } else {
-        return <div className="text">Saved.</div>
+        return <p className="text">Saved.</p>
     }
 };
 

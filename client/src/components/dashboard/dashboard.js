@@ -92,7 +92,8 @@ class Dashboard extends Component {
         });
         if (!Object.keys(added).length) {
             this.setState({
-                step: 2
+                step: 2,
+                complete: false
             });
         }
     } 

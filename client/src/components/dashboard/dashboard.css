@@ -1,13 +1,7 @@
 .dashboard {
     color: white;
-    background-color: #000000;
-    background: linear-gradient(black, #0C0032);
     height: 100%;
-    min-height: 700px;
     width: 100%;
-    min-width: 1350px;
-    display: flex;
-    flex-direction: column;
 }
 
 .dashboard-navbar {
@@ -20,7 +14,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 2em 4em;
+    padding: 2em 5em;
 }
 
 .navbar-container:last-child {
@@ -32,29 +26,25 @@
     opacity: 0.5;
 }
 
-.navbar-container button:hover {
+.navbar-container button:hover, button:active {
     font-size: 2rem;
     cursor: pointer;
     opacity: 1;
 }
 
 .dashboard-container {
-    width: 95%;
+    width: 97.5%;
     margin-left: auto;
     margin-right: auto;
-    display: flex;
-    flex-grow: 1;
-    min-height: 0;
-    justify-content: space-between;
-    align-items: stretch
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(295px, 1fr));
+    grid-gap: 10px;
 }
 
 .col {
-    padding: 2.5% 5%;
-    width: 30%;
     background: #282828;
     border-radius: 1em;
+    padding: 5% 7.5%;
+    height: 91.5vh;
+    min-height: 600px;
 }
-
-
-

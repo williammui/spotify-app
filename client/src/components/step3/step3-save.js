@@ -11,7 +11,7 @@ const Step3Save = (props) => {
             <div className="flex-container">
                 <button onClick={props.onSave} className="save-btn" style={{color: "#1DB954"}}>SAVE TO<br></br>SPOTIFY</button>
                 <div style={{marginLeft: "auto"}}>
-                    <Step3Saving loading={props.loading} saved={props.saved} complete={props.complete}/>
+                    <Step3Saving loading={props.loading} saved={props.saved} complete={props.complete} />
                 </div>
             </div>
         )

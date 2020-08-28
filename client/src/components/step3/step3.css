@@ -8,7 +8,7 @@
   margin-right: 10px;
 }
 
-.remove-btn:hover {
+.remove-btn:hover, .remove-btn:active {
   font-size: 1.35rem;
 }
 
@@ -17,36 +17,15 @@
   align-items: center;
 }
 
-.track-grid {
+.track-container {
   width: 100%;
   height: 60px;
-  display: grid;
-  grid-template-columns: repeat(4, 25%);
-  grid-template-rows: repeat(2, 50%);
+  display: flex;
   margin: 10px 0;
 }
 
-.track-img {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 1;
-  grid-row-end: 3;
-  background: red;
-}
-
-.track-name {
-  grid-column-start: 2;
-  grid-column-end: 5;
-  grid-row-start: 1;
-  grid-row-end: 2;
-  overflow-y: hidden;
-}
-
-.track-artist {
-  grid-column-start: 2;
-  grid-column-end: 5;
-  grid-row-start: 2;
-  grid-row-end: 3;
+.track-details {
+  flex-grow: 1;
 }
 
 .text-name {
@@ -60,4 +39,3 @@
   font-weight: 400;
   margin-left: 10px;
 }
-

@@ -6,19 +6,11 @@ const Step3Tracks = (props) => {
     if (props.open) {
         return tracks.map((track) => {
             return (
-                <div className="track-grid" key={track.trackID}>
-                    <div className="track-img" style={{
-                        backgroundImage: `url(${track.imageURL})`,
-                        backgroundRepeat: "no-repeat",
-                        backgroundPosition: "center",
-                        backgroundSize: "cover"
-                    }}>
-                    </div>
-                    <div className="track-name">
+                <div className="track-container" key={track.trackID}>
+                    <img src={track.imageURL} alt="track cover"/>
+                    <div className="track-details">
                         <h4 className="text-name">{track.trackName}</h4>
-                    </div>
-                    <div className="track-artist">
-                    <h4 className="text-artist">{track.artistName[0]}</h4>
+                        <h4 className="text-artist">{track.artistName[0]}</h4>
                     </div>
                 </div>
             );
