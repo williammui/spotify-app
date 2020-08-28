@@ -34,4 +34,5 @@
 .login-link:hover, .login-link:active {
     background: white;
     color: #1DB954;
+    font-size: 1.85rem;
 }
