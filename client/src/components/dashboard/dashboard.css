@@ -14,7 +14,9 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 2em 5em;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    padding-left: 1.25%;
 }
 
 .navbar-container:last-child {
