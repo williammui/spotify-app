@@ -39,3 +39,18 @@
   font-weight: 400;
   margin-left: 10px;
 }
+
+.save-btn {
+    background: black;
+    color: #1DB954;
+    text-decoration: none;
+    padding: 1em 1.5em;
+    border-radius: 1.5em;
+    transition: 0.3s;
+}
+
+.save-btn:hover, .save-btn:active {
+  background: #1DB954;
+  color: black;
+  font-size: 1.75rem;
+}

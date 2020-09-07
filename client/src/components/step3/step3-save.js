@@ -9,7 +9,7 @@ const Step3Save = (props) => {
     } else {
         return (
             <div className="flex-container">
-                <button onClick={props.onSave} className="save-btn" style={{color: "#1DB954"}}>SAVE TO<br></br>SPOTIFY</button>
+                <button onClick={props.onSave} className="save-btn">SAVE TO<br></br>SPOTIFY</button>
                 <div style={{marginLeft: "auto"}}>
                     <Step3Saving loading={props.loading} saved={props.saved} complete={props.complete} />
                 </div>
