@@ -30,7 +30,7 @@
 }
 
 .navbar-container button:hover, button:active {
-    font-size: 2rem;
+    font-size: 1.75rem;
     cursor: pointer;
     opacity: 1;
 }
